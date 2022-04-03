@@ -20,14 +20,14 @@
 					<button id="btnAdd" class="btn btn-success" data-toggle="modal" data-target="#modalAdd">+ Add user</button>
 				</div>
 
-				<table class="table">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>id</th>
-							<th>name</th>
-							<th>dob</th>
-							<th colspan="2">option</th>
+							<th>ID</th>
+							<th>Name</th>
+							<th>DOB</th>
+							<th colspan="2" class="text-center">Option</th>
 						</tr>
 					</thead>
 

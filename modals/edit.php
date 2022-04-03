@@ -1,8 +1,8 @@
-<div class="modal fade" id="modalAdd">
+<div class="modal fade" id="modalEdit">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-body p-5">
-				<h3>Add new user</h3>
+				<h3>Edit <span class="userName"></span>'s information</h3>
 				<form>
 					<div class="form-group">
 						<label>Name</label>
