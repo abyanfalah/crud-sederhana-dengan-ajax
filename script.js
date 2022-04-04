@@ -1,19 +1,28 @@
-// let _user = {}
+let _user = {}
 
 function loadUser(id = null) {
 	let data
+	let a
 	$.ajax({
 		url: 'api/read.php' + (id ? "?id="+id : ""),
 		type: 'get',
 		async: false,
 		success: function(res){
 			data = res
+			for(let n of Object.keys(res)){
+				_user[res[n].id] = {}
+				for(let fields of Object.keys(res[n])){
+					if (fields == 'id') { continue }
+					_user[res[n].id][fields] = res[n][fields]
+				}
+			}
 		}
 	});
+	// console.log(_user)
 	return data
 }
 
-function refreshTable(res = loadUser()) {
+function refresh(res = loadUser()) {
 	let counter = 1
 	let row, col
 	for(let n of Object.keys(res)){
@@ -40,9 +49,9 @@ function refreshTable(res = loadUser()) {
 			col.append(btn)
 			row.append(col)
 		}
-		console.log(row)
-
+		$("#userTable").innerHTML = ''
 		$("#userTable").append(row)
+
 
 	}
 }
@@ -54,9 +63,10 @@ function clearForms(){
 
 $(document).ready(function(){
 	// loadUser()
-	refreshTable()
+	refresh()
 
-	$("#modalEdit").modal('show')
+
+	// $("#modalEdit").modal('show')
 
 	$(document).on('click','#btnSaveAdd', function(){
 		$.ajax({
@@ -65,11 +75,12 @@ $(document).ready(function(){
 			data: $("#formAdd").serializeArray(),
 			success: function(res){
 				console.log(res)
-				loadUser();
+				refresh();
 				$("#modalAdd").modal('hide')
-				clearForms();
 			}
 		})
+
 	})
 
 })
+
