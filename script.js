@@ -23,6 +23,7 @@ function loadUser(id = null) {
 }
 
 function refresh(res = loadUser()) {
+	$("#userTable").html('')
 	let counter = 1
 	let row, col
 	for(let n of Object.keys(res)){
@@ -34,7 +35,9 @@ function refresh(res = loadUser()) {
 			col = document.createElement('td')
 			col.textContent = res[n][fields]
 			row.append(col)
+
 		}
+
 		// option buttons
 		for(let i = 0; i<2; i++){
 			col = document.createElement('td')
@@ -49,10 +52,10 @@ function refresh(res = loadUser()) {
 			col.append(btn)
 			row.append(col)
 		}
-		$("#userTable").innerHTML = ''
+		//================== 
+
+		console.log(row)
 		$("#userTable").append(row)
-
-
 	}
 }
 
@@ -74,12 +77,23 @@ $(document).ready(function(){
 			type: 'post',
 			data: $("#formAdd").serializeArray(),
 			success: function(res){
-				console.log(res)
-				refresh();
-				$("#modalAdd").modal('hide')
+				if (res.status) {
+					refresh()
+					console.log(res)
+					$("#modalAdd").modal('hide')
+				}
 			}
 		})
 
+	})
+
+	$(document).on('click', '#btnTruncate', function(){
+		$.ajax({
+			url: 'api/truncate.php',
+			success: function(res){
+				console.log(res)
+			}
+		})
 	})
 
 })

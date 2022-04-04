@@ -6,12 +6,12 @@
 				<form id="formAdd" method="post">
 					<div class="form-group">
 						<label>Name</label>
-						<input class="form-control" type="text" name="name">
+						<input class="form-control" type="text" name="name" value="asdf">
 					</div>
 
 					<div class="form-group">
 						<label>DOB</label>
-						<input class="form-control" type="date" name="dob">
+						<input class="form-control" type="date" name="dob" value="2020-12-02">
 					</div>
 				</form>
 

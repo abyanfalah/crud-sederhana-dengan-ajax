@@ -28,7 +28,7 @@
 	class API
 	{
 		private $mysqli = false;
-		public $table = 'dummy';
+		public $table = 'user';
 		
 		function __construct($mysqli)
 		{
@@ -80,6 +80,19 @@
 
 			header('Content-Type: application/json');
 			echo json_encode($user);
+		}
+
+
+		// ================
+
+		public function truncate()
+		{
+			if ($result = $this->mysqli->query('truncate'.$this->table)) {
+				$message = 'truncated';
+			}else{
+				$message = 'failed to truncate';
+			}
+			echo $message;
 		}
 
 

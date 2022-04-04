@@ -18,6 +18,7 @@
 				<div>
 					<h3 class="d-inline-block">List of user</h3>
 					<button id="btnAdd" class="btn btn-success" data-toggle="modal" data-target="#modalAdd">+ Add user</button>
+					<button class="btn btn-danger" id="btnTruncate">Truncate</button>
 				</div>
 
 				<table class="table table-striped">
