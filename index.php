@@ -9,7 +9,6 @@
 <body>
 	<?php 
 		include 'connection.php'; 
-		// echo new_id();
 	?>
 
 	<div class="container">
@@ -43,6 +42,7 @@
 	<?php 
 		include 'modals/add.php';
 		include 'modals/edit.php';
+		include 'modals/delete.php';
 
 	?>
 

@@ -82,6 +82,55 @@
 			echo json_encode($user);
 		}
 
+		public function update_user($data)
+		{
+			$id = $data['id'];
+			$name = $data['name'];
+			$dob = $data['dob'];
+
+			$query = "update user set name ='".$name."', dob = '".$dob."' where id = '".$id."' ";
+
+			if ($this->mysqli->query($query)) {
+				$message = $id." successfully updated";
+				$status = true;
+			}else{
+				$message = "failed to update $id";
+				$status = false;
+			}
+
+			$res = [
+				"message" => $message,
+				"status" => $status
+			];
+
+			header('Content-Type: application/json');
+			echo json_encode($res);
+		}
+
+		public function delete_user($data)
+		{
+			$id = $data['id'];
+			if ($id) {
+				$query = "delete from user where id = '".$id."'";
+			}
+
+			if ($this->mysqli->query($query)) {
+				$message = "$id successfully deleted";
+				$status = true;
+			}else{
+				$message = "failed to update $id";
+				$status = false;	
+			}
+
+			$res = [
+				"message" => $message,
+				"status" => $status
+			];
+
+			header('Content-Type: application/json');
+			echo json_encode($res);
+		}
+
 
 		// ================
 
