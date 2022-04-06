@@ -1,4 +1,5 @@
 <?php
+	//konfigurasi database disini
 	$mysqli = new mysqli(
 		'',//hostname
 		'',//username
