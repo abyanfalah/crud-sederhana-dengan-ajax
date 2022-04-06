@@ -1,9 +1,9 @@
 <?php
 	$mysqli = new mysqli(
-		'localhost',
-		'abyan',
-		'scootermania',
-		'dummy'
+		'',//hostname
+		'',//username
+		'',//password
+		''//database name
 	);
 
 	$err = $mysqli->connect_error;
