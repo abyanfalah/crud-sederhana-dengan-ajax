@@ -1,15 +1,17 @@
 <?php
 	//konfigurasi database disini
 	$mysqli = new mysqli(
-		'',//hostname
-		'',//username
-		'',//password
-		''//database name
+		'',		//hostname
+		'',		//username
+		'',		//password
+		''		//database name
 	);
 
 	$err = $mysqli->connect_error;
 	$err ? die($err) : null ;
 
+
+	// manual auto increment
 	function new_id(){
 		global $mysqli;
 
@@ -75,7 +77,7 @@
 					$user[] = $data;
 				}
 			}else{
-				die("can't get user(s)");
+				die("can't get user(s): ". $this->mysqli->error);
 				// die($query);
 			}
 
@@ -95,7 +97,7 @@
 				$message = $id." successfully updated";
 				$status = true;
 			}else{
-				$message = "failed to update $id";
+				$message = "failed to update ". $id;
 				$status = false;
 			}
 
@@ -116,10 +118,10 @@
 			}
 
 			if ($this->mysqli->query($query)) {
-				$message = "$id successfully deleted";
+				$message = $id . " successfully deleted";
 				$status = true;
 			}else{
-				$message = "failed to update $id";
+				$message = "failed to update ". $id;
 				$status = false;	
 			}
 
@@ -137,12 +139,21 @@
 
 		public function truncate()
 		{
-			if ($result = $this->mysqli->query('truncate'.$this->table)) {
-				$message = 'truncated';
+			if ($this->mysqli->query('truncate '.$this->table)) {
+				$message = "truncated";
+				$status = true;
 			}else{
-				$message = 'failed to truncate';
+				$message = "failed to truncate";
+				$status = false;
 			}
-			echo $message;
+
+			$res = [
+				"message" => $message,
+				"status" => $status
+			];
+			
+			header('Content-Type: application/json');
+			echo json_encode($res);
 		}
 
 
