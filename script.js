@@ -174,8 +174,8 @@ $(document).ready(function(){
 				if (res.status) {
 					console.log(res)
 					refresh()
-					$("#modalTruncate").modal('hide')
 				}
+				$("#modalTruncate").modal('hide')
 			})
 		})
 	// END OF TRUNCATE
