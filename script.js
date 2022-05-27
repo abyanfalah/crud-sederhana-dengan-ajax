@@ -55,8 +55,8 @@ function refresh(res = loadUser()) {
 			row.append(col)
 		}
 		//================== 
-		clearForms()
 		$("#userTable").append(row)
+		clearForms()
 	}
 }
 
@@ -66,12 +66,9 @@ function clearForms(){
 }
 
 $(document).ready(function(){
-	// loadUser()
+
+
 	refresh()
-
-
-	// $("#modalEdit").modal('show')
-
 
 	// ADD SECTION
 		$(document).on('click','#btnSaveAdd', function(){
@@ -170,14 +167,18 @@ $(document).ready(function(){
 		})
 	// END OF DELETE SECTION
 
-	$(document).on('click', '#btnTruncate', function(){
-		$.ajax({
-			url: 'api/truncate.php',
-			success: function(res){
-				console.log(res)
-			}
+
+	// TRUNCATE
+		$(document).on('click', '#btnProceedTruncate', function(){
+			$.get('api/truncate.php', function(res){
+				if (res.status) {
+					console.log(res)
+					refresh()
+					$("#modalTruncate").modal('hide')
+				}
+			})
 		})
-	})
+	// END OF TRUNCATE
 
 })
 
